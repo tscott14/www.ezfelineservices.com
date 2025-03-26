@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional cat litter management services - Scheduled cleaning, odor control, and premium litter solutions">
+    <title>Litter Management | Sophia's Cat Care</title>
+    <style>
+        /* Reused styles from index.html */
+        
+        /* Page-Specific Styles */
+        .service-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1529257414772-1960b7bea4eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+        
+        .process-steps {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .step-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--secondary);
+            min-width: 60px;
+            text-align: center;
+        }
+        
+        .pricing {
+            background-color: var(--light);
+            padding: 4rem 2rem;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto 0;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .pricing-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            color: var(--dark);
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .pricing-card li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .pricing-card li:before {
+            content: "✓";
+            color: var(--secondary);
+            position: absolute;
+            left: 0;
+        }
+        
+        .faq {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1.5rem;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .step, .step:nth-child(even) {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .step-number {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Reused Header -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="https://via.placeholder.com/50x50" alt="Sophia's Cat Care Logo">
+                <span>Sophia's Cat Care</span>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="litter-management.html" class="active">Litter Management</a>
+                <a href="cat-cafe.html">Cat Café</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="hamburger">☰</div>
+        </div>
+    </header>
+
+    <!-- Service Hero -->
+    <section class="service-hero">
+        <h1>Litter Management Service</h1>
+        <p>Stress-free cleanliness for you and your feline</p>
+        <a href="#booking" class="btn">Book Now</a>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a> &gt; <span>Litter Management</span>
+    </div>
+
+    <!-- Service Process -->
+    <section class="process-steps">
+        <h2 class="section-title">How It Works</h2>
+        
+        <!-- Step 1 -->
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3>Initial Consultation</h3>
+                <p>We visit your home to assess your cat's needs, current setup, and preferences. This helps us customize our service for optimal results.</p>
+            </div>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3>Scheduled Cleanings</h3>
+                <p>Choose from weekly, bi-weekly, or monthly visits. Our specialists arrive with all supplies needed for a complete litter refresh.</p>
+            </div>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3>Premium Maintenance</h3>
+                <p>We use veterinary-recommended litters and hospital-grade disinfectants. Every visit includes odor neutralization and waste disposal.</p>
+            </div>
+        </div>
+        
+        <!-- Step 4 -->
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h3>Health Monitoring</h3>
+                <p>We track waste output and behavior changes, alerting you to any potential health concerns with detailed reports.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            <h2 class="section-title">Service Plans</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">Flexible options for every household</p>
+            
+            <div class="pricing-grid">
+                <!-- Plan 1 -->
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="price">$29<span>/visit</span></div>
+                    <ul>
+                        <li>1-2 litter boxes</li>
+                        <li>Complete waste removal</li>
+                        <li>Litter refresh</li>
+                        <li>Basic odor control</li>
+                        <li>Monthly health report</li>
+                    </ul>
+                    <a href="#booking" class="btn">Choose Plan</a>
+                </div>
+                
+                <!-- Plan 2 -->
+                <div class="pricing-card" style="border: 2px solid var(--secondary);">
+                    <div style="background: var(--secondary); color: white; padding: 0.5rem; margin: -2rem -2rem 1rem; border-radius: 8px 8px 0 0;">
+                        Most Popular
+                    </div>
+                    <h3>Premium</h3>
+                    <div class="price">$49<span>/visit</span></div>
+                    <ul>
+                        <li>Up to 3 litter boxes</li>
+                        <li>Deep sanitization</li>
+                        <li>Premium litter included</li>
+                        <li>Advanced odor elimination</li>
+                        <li>Bi-weekly health reports</li>
+                        <li>Urine detection light</li>
+                    </ul>
+                    <a href="#booking" class="btn">Choose Plan</a>
+                </div>
+                
+                <!-- Plan 3 -->
+                <div class="pricing-card">
+                    <h3>Deluxe</h3>
+                    <div class="price">$79<span>/visit</span></div>
+                    <ul>
+                        <li>Unlimited litter boxes</li>
+                        <li>Full sanitization + deodorizing</li>
+                        <li>Organic litter options</li>
+                        <li>Automatic box available</li>
+                        <li>Weekly health reports</li>
+                        <li>Emergency contact priority</li>
+                    </ul>
+                    <a href="#booking" class="btn">Choose Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">How often should the litter be changed?</div>
+            <p>We recommend full cleanings every 1-2 weeks for single-cat households, and 2-3 times weekly for multi-cat homes. Our specialists will advise during your consultation.</p>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">Do you provide the litter?</div>
+            <p>Yes! All plans include premium litter. We offer clay, silica, pine, and organic options. Let us know your cat's preference.</p>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What if my cat is shy with strangers?</div>
+            <p>Our team is trained in feline behavior. We'll work around your cat's comfort level, often scheduling visits when they're most relaxed.</p>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">Is there a contract?</div>
+            <p>No long-term commitments. Cancel anytime with 48 hours notice. Monthly subscribers get 10% off.</p>
+        </div>
+    </section>
+
+    <!-- Booking CTA -->
+    <section id="booking" style="background: var(--primary); color: white; text-align: center; padding: 4rem 2rem;">
+        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Ready for a Fresher Home?</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem;">Book your consultation today - first visit includes free odor assessment!</p>
+        <a href="contact.html" class="btn" style="background: white; color: var(--primary);">Schedule Now</a>
+    </section>
+
+    <!-- Reused Footer -->
+    <footer>
+        <!-- Footer content same as index.html -->
+    </footer>
+
+    <script>
+        // Mobile menu and FAQ toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Simple FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                question.nextElementSibling.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

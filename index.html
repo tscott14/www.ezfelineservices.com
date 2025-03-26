@@ -1,27 +1,636 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EZ Feline Services</title>
+    <meta name="description"
+        content="Sophia's Cat Care - Premium feline wellness services including litter management and upcoming cat café experiences">
+    <title>Sophia's Cat Care | Premium Feline Services</title>
+    <style>
+        /* Reset and Base Styles */
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #ff7e5f;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            min-height: 500px;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ff6a45;
+            transform: translateY(-2px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            background-color: var(--light);
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .service:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .service-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .service-content {
+            flex: 1;
+        }
+
+        .service h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* Gallery Preview */
+        .gallery-preview {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Blog Preview */
+        .blog-preview {
+            padding: 5rem 2rem;
+            background-color: var(--light);
+        }
+
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .blog-scroller {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-snap-type: x proximity;
+            padding-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .blog-card {
+            min-width: 300px;
+            scroll-snap-align: start;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .blog-excerpt {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 40px;
+        }
+
+        .footer-links h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #495057;
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about {
+                flex-direction: column;
+            }
+
+            .service,
+            .service:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .blog-scroller {
+                flex-direction: column;
+                overflow-x: unset;
+            }
+
+            .blog-card {
+                min-width: unset;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
+    <!-- Header/Navigation -->
     <header>
-        <h1>EZ Feline Services</h1>
+        <div class="navbar">
+            <div class="logo">
+                <img src="images/310437741_531c2e0a-c91c-40ce-977d-6295162bd64a.jpg" alt="Sophia's Cat Care Logo">
+                <span>Sophia's Cat Care</span>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="litter-management.html">Litter Management</a>
+                <a href="cat-cafe.html">Cat Café</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="blog.html">Blog</a>
+            </nav>
+            <div class="hamburger">☰</div>
+        </div>
     </header>
-    <nav>
-        <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Litter Management</a></li>
-            <li><a href="#">Contact Us</a></li>
-        </ul>
-    </nav>
-    <main>
-        <h2>Welcome to EZ Feline Services</h2>
-        <p>We provide premium services for cat owners in the local area. Our goal is to make caring for your pet easier and less stressful.</p>
-    </main>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Premium Cat Care Services</h1>
+        <p>Making feline life easier with expert litter management and upcoming cat café experiences</p>
+        <a href="contact.html" class="btn">Book a Service</a>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="about-img">
+            <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                alt="Sophia with a cat">
+        </div>
+        <div class="about-content">
+            <h2 class="section-title">Who We Are</h2>
+            <p>Sophia's Cat Care offers premium feline wellness services, from hassle-free litter management to future
+                cat café experiences. We combine expertise, passion, and a love for cats to create cleaner, happier
+                spaces for pets and their owners.</p>
+            <p>Founded in 2020, our mission is to enhance the lives of cats and their humans through innovative services
+                and community-focused projects.</p>
+            <a href="about.html" class="btn" style="margin-top: 1rem;">Learn More</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="services-container">
+            <h2 class="section-title" style="text-align: center;">Our Services</h2>
+
+            <!-- Litter Management Service -->
+            <div class="service">
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1529257414772-1960b7bea4eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                        alt="Clean litter box">
+                </div>
+                <div class="service-content">
+                    <h3>Professional Litter Management</h3>
+                    <p>Our expert service takes the hassle out of litter box maintenance with regular cleaning, odor
+                        control, and premium litter replacement.</p>
+                    <p>Benefits include reduced stress for your cat, a fresher home environment, and more free time for
+                        you to enjoy with your pet.</p>
+                    <a href="litter-management.html" class="btn"
+                        style="display: inline-block; margin-top: 1rem;">Service Details</a>
+                </div>
+            </div>
+
+            <!-- Cat Café Service -->
+            <div class="service">
+                <div class="service-content">
+                    <h3>Coming Soon: Cat Café</h3>
+                    <p>We're excited to announce our upcoming cat café, where you can enjoy quality coffee while
+                        surrounded by adoptable feline friends.</p>
+                    <p>This community space will promote cat adoption, education, and the therapeutic benefits of
+                        human-feline interaction.</p>
+                    <div style="background: #e9ecef; padding: 1rem; border-radius: 5px; margin-top: 1rem;">
+                        <p>Sign up for updates on our progress:</p>
+                        <form style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                            <input type="email" placeholder="Your email"
+                                style="flex: 1; padding: 0.5rem; border: 1px solid #ced4da; border-radius: 4px;">
+                            <button type="submit"
+                                style="background: var(--primary); color: white; border: none; padding: 0 1rem; border-radius: 4px; cursor: pointer;">Notify
+                                Me</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1516054575922-f0b8eeadec1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                        alt="Cat café concept">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Preview -->
+    <section class="gallery-preview">
+        <h2 class="section-title">Our Gallery</h2>
+        <p>Explore moments from our work with feline friends and happy clients.</p>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1491485880348-85d48a9e5312?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    alt="Happy cat with clean litter box">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1511044568932-338cba0ad803?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    alt="Cat playing">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    alt="Cat looking at camera">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    alt="Multiple cats together">
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="gallery.html" class="btn">View Full Gallery</a>
+        </div>
+    </section>
+
+    <!-- Blog Preview -->
+    <section class="blog-preview">
+        <div class="blog-container">
+            <h2 class="section-title">From Our Blog</h2>
+            <p>Latest tips, stories, and news about feline care and our services.</p>
+
+            <div class="blog-scroller">
+                <!-- Blog Card 1 -->
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1536599424071-0b215a388ba7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                        alt="Cat in sunlight">
+                    <div class="blog-content">
+                        <p class="blog-date">March 15, 2025</p>
+                        <h3 class="blog-title">5 Signs Your Cat Loves Their Litter Box</h3>
+                        <p class="blog-excerpt">Learn how to recognize when your feline friend is truly happy with their
+                            bathroom setup...</p>
+                        <a href="blog/post1.html" class="btn"
+                            style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">Read More</a>
+                    </div>
+                </article>
+
+                <!-- Blog Card 2 -->
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                        alt="Cat sleeping">
+                    <div class="blog-content">
+                        <p class="blog-date">February 28, 2025</p>
+                        <h3 class="blog-title">The Science Behind Cat Café Therapy</h3>
+                        <p class="blog-excerpt">Discover how interacting with cats can reduce stress and improve mental
+                            health...</p>
+                        <a href="blog/post2.html" class="btn"
+                            style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">Read More</a>
+                    </div>
+                </article>
+
+                <!-- Blog Card 3 -->
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1519052537078-e6302a4968d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                        alt="Cat playing with toy">
+                    <div class="blog-content">
+                        <p class="blog-date">February 10, 2025</p>
+                        <h3 class="blog-title">Litter Box Maintenance: A Complete Guide</h3>
+                        <p class="blog-excerpt">Everything you need to know about keeping your cat's bathroom clean and
+                            odor-free...</p>
+                        <a href="blog/post3.html" class="btn"
+                            style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">Read More</a>
+                    </div>
+                </article>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="blog.html" class="btn">View All Articles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; EZ Feline Services 2025</p>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <img src="https://via.placeholder.com/40x40" alt="Sophia's Cat Care Logo">
+                    <span>Sophia's Cat Care</span>
+                </div>
+                <p>Premium feline wellness services for happier cats and owners.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="litter-management.html">Services</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="litter-management.html">Litter Management</a></li>
+                    <li><a href="cat-cafe.html">Upcoming Cat Café</a></li>
+                    <li><a href="#">Consultations</a></li>
+                    <li><a href="#">Cat Sitting</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>123 Feline Street<br>Catville, CA 90210</p>
+                <p>Email: hello@sophiascatcare.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 Sophia's Cat Care. All rights reserved. | <a href="privacy.html"
+                    style="color: #adb5bd;">Privacy Policy</a></p>
+        </div>
     </footer>
+
+    <script>
+        // Simple mobile menu toggle
+        document.querySelector('.hamburger').addEventListener('click', function () {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>
