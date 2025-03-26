@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gallery of Sophia's Cat Care - See our work, happy clients, and feline friends">
+    <title>Gallery | Sophia's Cat Care</title>
+    <style>
+        /* Reused styles from index.html */
+        
+        /* Gallery-Specific Styles */
+        .gallery-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1491485880348-85d48a9e5312?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+        
+        .gallery-controls {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .filter-btn {
+            background: none;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .lightbox-img {
+            max-height: 80vh;
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0 2rem;
+            max-width: 800px;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+        
+        .prev-btn {
+            left: 20px;
+        }
+        
+        .next-btn {
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Reused Header -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="https://via.placeholder.com/50x50" alt="Sophia's Cat Care Logo">
+                <span>Sophia's Cat Care</span>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="litter-management.html">Litter Management</a>
+                <a href="cat-cafe.html">Cat Café</a>
+                <a href="gallery.html" class="active">Gallery</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="hamburger">☰</div>
+        </div>
+    </header>
+
+    <!-- Gallery Hero -->
+    <section class="gallery-hero">
+        <h1>Our Gallery</h1>
+        <p>Capturing happy cats and satisfied clients</p>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a> &gt; <span>Gallery</span>
+    </div>
+
+    <!-- Gallery Controls -->
+    <div class="gallery-controls">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="litter">Litter Management</button>
+        <button class="filter-btn" data-filter="cafe">Cat Café</button>
+        <button class="filter-btn" data-filter="clients">Happy Clients</button>
+        <button class="filter-btn" data-filter="team">Our Team</button>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-container">
+        <div class="gallery-grid">
+            <!-- Image 1 -->
+            <div class="gallery-item" data-category="litter">
+                <img src="https://images.unsplash.com/photo-1529257414772-1960b7bea4eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Clean litter box setup">
+                <div class="gallery-caption">
+                    <h3>Premium Litter Setup</h3>
+                    <p>Our signature odor-control system in a client's home</p>
+                </div>
+            </div>
+            
+            <!-- Image 2 -->
+            <div class="gallery-item" data-category="clients">
+                <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Happy cat">
+                <div class="gallery-caption">
+                    <h3>Mittens</h3>
+                    <p>2-year-old tabby enjoying her fresh litter space</p>
+                </div>
+            </div>
+            
+            <!-- Image 3 -->
+            <div class="gallery-item" data-category="team">
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Sophia working">
+                <div class="gallery-caption">
+                    <h3>Sophia at Work</h3>
+                    <p>Performing our monthly deep-clean service</p>
+                </div>
+            </div>
+            
+            <!-- Image 4 -->
+            <div class="gallery-item" data-category="cafe">
+                <img src="https://images.unsplash.com/photo-1516054575922-f0b8eeadec1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cat café concept">
+                <div class="gallery-caption">
+                    <h3>Cat Café Preview</h3>
+                    <p>Renderings of our upcoming community space</p>
+                </div>
+            </div>
+            
+            <!-- Image 5 -->
+            <div class="gallery-item" data-category="litter">
+                <img src="https://images.unsplash.com/photo-1591769225440-811ad7d6eab2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Automatic litter box">
+                <div class="gallery-caption">
+                    <h3>Smart Litter System</h3>
+                    <p>High-tech solution for busy pet parents</p>
+                </div>
+            </div>
+            
+            <!-- Image 6 -->
+            <div class="gallery-item" data-category="clients">
+                <img src="https://images.unsplash.com/photo-1573866926737-4325a12ad628?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cat and owner">
+                <div class="gallery-caption">
+                    <h3>Oliver & Sarah</h3>
+                    <p>"The service gave us more quality time together"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <span class="close-btn">&times;</span>
+            <img class="lightbox-img" src="" alt="">
+            <div class="lightbox-caption"></div>
+        </div>
+        <div class="nav-btn prev-btn">❮</div>
+        <div class="nav-btn next-btn">❯</div>
+    </div>
+
+    <!-- Reused Footer -->
+    <footer>
+        <!-- Footer content same as index.html -->
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Gallery Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Filter items
+                const filter = btn.dataset.filter;
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Lightbox Functionality
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImg = document.querySelector('.lightbox-img');
+        const lightboxCaption = document.querySelector('.lightbox-caption');
+        const closeBtn = document.querySelector('.close-btn');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        
+        let currentIndex = 0;
+        const images = Array.from(galleryItems).map(item => ({
+            src: item.querySelector('img').src,
+            title: item.querySelector('h3').textContent,
+            desc: item.querySelector('p').textContent
+        }));
+        
+        // Open lightbox
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                currentIndex = index;
+                updateLightbox();
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Navigation
+        function updateLightbox() {
+            lightboxImg.src = images[currentIndex].src;
+            lightboxCaption.innerHTML = `<h3>${images[currentIndex].title}</h3><p>${images[currentIndex].desc}</p>`;
+        }
+        
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateLightbox();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateLightbox();
+        });
+        
+        // Close lightbox
+        closeBtn.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            } else if (e.key === 'ArrowLeft') {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateLightbox();
+            } else if (e.key === 'ArrowRight') {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

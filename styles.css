@@ -50,8 +50,8 @@ nav ul li a {
 }
 
 .hero {
-    background: url('cat-hero.jpg') no-repeat center center/cover;
-    color: #333;
+    background: linear-gradient(#ffa500FF, #ffa50099), url('images/ludemeula-fernandes-9UUoGaaHtNE-unsplash.jpg') no-repeat center center/cover;
+    color: #fff;
     padding: 100px 20px;
     text-align: center;
 }
@@ -135,17 +135,19 @@ form button:hover {
     justify-content: space-between;
     gap: 20px;
     margin-top: 20px;
-}
-
-.plan {
+    flex-wrap: wrap; /* Allow plans to wrap on smaller screens */
+  }
+  
+  .plan {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
     text-align: center;
-    flex: 1;
+    flex: 1 1 calc(33.333% - 40px); /* Adjust for three plans */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+    margin-bottom: 20px; /* Add space between plans on smaller screens */
+  }
 
 .plan h4 {
     font-size: 1.5rem;

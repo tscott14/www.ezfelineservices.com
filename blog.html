@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sophia's Cat Care Blog - Expert tips on feline health, behavior, and litter management">
+    <title>Blog | Sophia's Cat Care</title>
+    <style>
+        /* Reused base styles from index.html */
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #ff7e5f;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+        
+        /* Header/Footer - Same as previous pages */
+        
+        /* Blog-Specific Styles */
+        .blog-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1513245543132-31f507417b26?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+        
+        .blog-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .blog-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+        }
+        
+        .search-box::before {
+            content: "🔍";
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .category-filter {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            background: none;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-category {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .blog-title {
+            font-size: 1.3rem;
+            margin: 1rem 0;
+            color: var(--dark);
+        }
+        
+        .blog-excerpt {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+        
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .page-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .page-btn:hover:not(.active) {
+            background: #f1f1f1;
+        }
+        
+        /* Newsletter CTA */
+        .newsletter {
+            background: var(--light);
+            padding: 4rem 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: 1rem auto 0;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Reused Header -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="https://via.placeholder.com/50x50" alt="Sophia's Cat Care Logo">
+                <span>Sophia's Cat Care</span>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="litter-management.html">Litter Management</a>
+                <a href="cat-cafe.html">Cat Café</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="blog.html" class="active">Blog</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="hamburger">☰</div>
+        </div>
+    </header>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <h1>Feline Insights</h1>
+        <p>Expert tips, stories, and the latest in cat care</p>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a> &gt; <span>Blog</span>
+    </div>
+
+    <!-- Blog Content -->
+    <main class="blog-container">
+        <!-- Controls -->
+        <div class="blog-controls">
+            <div class="search-box">
+                <input type="text" placeholder="Search articles...">
+            </div>
+            <div class="category-filter">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="health">Health</button>
+                <button class="category-btn" data-category="behavior">Behavior</button>
+                <button class="category-btn" data-category="litter">Litter Tips</button>
+                <button class="category-btn" data-category="cafe">Cat Café</button>
+            </div>
+        </div>
+
+        <!-- Articles Grid -->
+        <div class="blog-grid">
+            <!-- Article 1 -->
+            <article class="blog-card" data-category="health">
+                <img src="https://images.unsplash.com/photo-1536599424071-0b215a388ba7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cat in sunlight">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Health</span>
+                        <span>March 15, 2025</span>
+                    </div>
+                    <h3 class="blog-title">5 Signs Your Cat Loves Their Litter Box</h3>
+                    <p class="blog-excerpt">Learn how to recognize when your feline friend is truly happy with their bathroom setup and what changes might indicate health issues.</p>
+                    <a href="blog/post1.html" class="btn">Read More</a>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="blog-card" data-category="behavior">
+                <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cat sleeping">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Behavior</span>
+                        <span>February 28, 2025</span>
+                    </div>
+                    <h3 class="blog-title">Why Cats Knead: The Science Behind the Behavior</h3>
+                    <p class="blog-excerpt">Discover the evolutionary reasons behind this common feline behavior and what it tells you about your cat's emotional state.</p>
+                    <a href="blog/post2.html" class="btn">Read More</a>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="blog-card" data-category="litter">
+                <img src="https://images.unsplash.com/photo-1519052537078-e6302a4968d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cat playing with toy">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Litter Tips</span>
+                        <span>February 10, 2025</span>
+                    </div>
+                    <h3 class="blog-title">Litter Box Maintenance: A Complete Guide</h3>
+                    <p class="blog-excerpt">Everything you need to know about keeping your cat's bathroom clean, odor-free, and appealing to even the pickiest felines.</p>
+                    <a href="blog/post3.html" class="btn">Read More</a>
+                </div>
+            </article>
+
+            <!-- Article 4 -->
+            <article class="blog-card" data-category="health">
+                <img src="https://images.unsplash.com/photo-1513245543132-31f507417b26?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cat at vet">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Health</span>
+                        <span>January 22, 2025</span>
+                    </div>
+                    <h3 class="blog-title">Urinary Health: What Every Cat Owner Should Know</h3>
+                    <p class="blog-excerpt">Recognize the warning signs of urinary tract issues and learn prevention strategies to keep your cat healthy.</p>
+                    <a href="blog/post4.html" class="btn">Read More</a>
+                </div>
+            </article>
+
+            <!-- Article 5 -->
+            <article class="blog-card" data-category="cafe">
+                <img src="https://images.unsplash.com/photo-1516054575922-f0b8eeadec1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cat café">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Cat Café</span>
+                        <span>December 15, 2024</span>
+                    </div>
+                    <h3 class="blog-title">Therapeutic Benefits of Cat Cafés</h3>
+                    <p class="blog-excerpt">How interacting with cats can reduce stress, lower blood pressure, and improve mental health outcomes.</p>
+                    <a href="blog/post5.html" class="btn">Read More</a>
+                </div>
+            </article>
+
+            <!-- Article 6 -->
+            <article class="blog-card" data-category="behavior">
+                <img src="https://images.unsplash.com/photo-1511044568932-338cba0ad803?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cat playing">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Behavior</span>
+                        <span>November 30, 2024</span>
+                    </div>
+                    <h3 class="blog-title">Introducing a New Cat to Your Home</h3>
+                    <p class="blog-excerpt">A step-by-step guide to successful feline introductions, whether you're bringing home a kitten or adopting an adult cat.</p>
+                    <a href="blog/post6.html" class="btn">Read More</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <div class="page-btn">❮</div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">3</div>
+            <div class="page-btn">❯</div>
+        </div>
+    </main>
+
+    <!-- Newsletter CTA -->
+    <section class="newsletter">
+        <h2>Stay Updated</h2>
+        <p>Subscribe to our newsletter for new articles, tips, and special offers</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Your email address" required>
+            <button type="submit" class="btn">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Reused Footer -->
+    <footer>
+        <!-- Footer content same as index.html -->
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Category filtering
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const blogCards = document.querySelectorAll('.blog-card');
+        
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Filter articles
+                const category = btn.dataset.category;
+                blogCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Simple search functionality
+        const searchInput = document.querySelector('.search-box input');
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            blogCards.forEach(card => {
+                const title = card.querySelector('.blog-title').textContent.toLowerCase();
+                const excerpt = card.querySelector('.blog-excerpt').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // Pagination (simulated)
+        const pageBtns = document.querySelectorAll('.page-btn');
+        pageBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (btn.textContent === '❮') {
+                    // Previous page logic
+                    console.log('Previous page');
+                } else if (btn.textContent === '❯') {
+                    // Next page logic
+                    console.log('Next page');
+                } else {
+                    // Numbered page
+                    pageBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    // In a real implementation, you would load new content here
+                }
+            });
+        });
+    </script>
+</body>
+</html>
